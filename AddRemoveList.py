@@ -17,3 +17,5 @@ print(thislist)
 
 thislist.pop(1)             # Remove the specified index
 print(thislist)
+
+print(len(thislist))
