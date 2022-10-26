@@ -1,13 +1,19 @@
 # import MongoClient
+import pymongo
 
-from pymongo import MongoClient
+myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+mydb = myclient['movie_db']
+movies = myclient.movies
 
-#Creating a Client
-client = MongoClient('localhost', 27017)
+movie_ = {
+    "Title":    "Mr.Robot",
+    "Starting": "Rami Malek, Christian Slater, Carly Chaikin",
+    "Created":  "Sam Esmail",
+    "Year":     2016
+}
+# mycol = mydb["customer"]
+id = movies.insert_one(movie_).inserted_id
+print(id)
+mydb.list_collection_names()
 
-#Creating a database name mongodb
-db = client['mydb']
-
-list_of_db = client.list_database_names()
-if "mydb" in list_of_db:
-    print("DB EXISTS !!!")
+print(myclient.list_database_names())
